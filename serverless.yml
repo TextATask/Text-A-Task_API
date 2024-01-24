@@ -25,10 +25,10 @@ provider:
 
 functions:
   create:
-    handler: todos/create.create
+    handler: tasks/create.create
     events:
       - httpApi:
-          path: /todos
+          path: /tasks
           method: post
 
 resources:
