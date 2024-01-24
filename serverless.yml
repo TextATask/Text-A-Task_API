@@ -24,16 +24,16 @@ provider:
           Resource: "arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  hello:
-    handler: handler.hello
+  create:
+    handler: todos/create.create
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /todos
+          method: post
 
 resources:
   Resources:
-    TodosDynamoDbTable:
+    TasksDynamoDbTable:
       Type: 'AWS::DynamoDB::Table'
       DeletionPolicy: Retain
       Properties:
