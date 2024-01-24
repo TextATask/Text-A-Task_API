@@ -8,8 +8,8 @@ import boto3
 dynamodb = boto3.resource('dynamodb')
 
 def create(event, context):
-    data = json.loads(event['body'])
-    if 'text' not in data:
+    data = json.loads(event)
+    if 'body' not in data:
         logging.error("Validation Failed")
         raise Exception("Couldn't create the task item.")
     
@@ -19,7 +19,7 @@ def create(event, context):
     
     item = {
         'id': os.environ['PHONE_NUMBER'],
-        'text': data['text'],
+        'text': data['body']['text'],
         'complete': False,
         'createdAt': timestamp,
         'updatedAt': timestamp,
