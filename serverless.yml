@@ -7,7 +7,7 @@ provider:
   name: aws
   runtime: python3.9
   environment:
-      DYNAMODB_TABLE: ${self.service}-${sls:stage}
+      DYNAMODB_TABLE: ${self:service}-${sls:stage}
   httpApi:
     cors: true
   iam:
