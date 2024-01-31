@@ -2,13 +2,12 @@ import json
 import logging
 import os
 import time
-import uuid
 
 import boto3
 dynamodb = boto3.resource('dynamodb')
 
 def create(event, context):
-    data = json.loads(event)
+    data = json.loads(event["body"])
     if 'body' not in data:
         logging.error("Validation Failed")
         raise Exception("Couldn't create the task item.")
