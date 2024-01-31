@@ -9,7 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 
 def create(event, context):
     data = json.loads(event["body"])
-    if 'body' not in data:
+    if 'text' not in data:
         logging.error("Validation Failed")
         raise Exception("Couldn't create the task item.")
     
@@ -18,8 +18,8 @@ def create(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     item = {
-        'id': str(uuid.uuid()),
-        'text': data['body']['text'],
+        'id': str(uuid.uuid1()),
+        'text': data['text'],
         'incomplete': timestamp,
         'updatedAt': timestamp,
         'createdAt': timestamp
