@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import time
+import uuid
 
 import boto3
 dynamodb = boto3.resource('dynamodb')
@@ -17,11 +18,11 @@ def create(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     item = {
-        'id': os.environ['PHONE_NUMBER'],
+        'id': str(uuid.uuid()),
         'text': data['body']['text'],
-        'complete': False,
-        'createdAt': timestamp,
+        'incomplete': timestamp,
         'updatedAt': timestamp,
+        'createdAt': timestamp
         }
     
     table.put_item(Item=item)
