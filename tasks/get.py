@@ -12,14 +12,10 @@ def get(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     try: 
-        result = table.get_item(
-            Key={
-                'id': event['pathParameters']['id']
-            }
-        )
+        response = table.query(KeyConditionExpression=("id").eq(event['pathParameters']['id']))
     except ClientError as err:
         logger.error(
-            "Task % not found in table %. Error: Code %, Message %",
+            "Task %s not found in table %s. Error: Code %s, Message: %s",
             event['pathParameters']['id'],
             table.name,
             err.response["Error"]["Code"],
@@ -27,7 +23,7 @@ def get(event, context):
     
     response = {
         "statusCode": 200,
-        "body": json.dumps(result['Item'],
+        "body": json.dumps(response['Item'],
                            cls=decimalencoder.DecimalEncoder)
         }
     
