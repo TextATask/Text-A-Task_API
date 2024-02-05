@@ -3,8 +3,9 @@ import logging
 import os
 import time
 import uuid
-
+import random
 import boto3
+
 dynamodb = boto3.resource('dynamodb')
 
 def create(event, context):
@@ -16,9 +17,10 @@ def create(event, context):
     timestamp = str(time.time())
     
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+    new_id = str(random.randint(1, 899999) + 100000)
     
     item = {
-        'id': str(uuid.uuid1()),
+        'id': new_id,
         'text': data['text'],
         'incomplete': timestamp,
         'updatedAt': timestamp,
