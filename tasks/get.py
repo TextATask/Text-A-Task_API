@@ -12,7 +12,11 @@ def get(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     try: 
-        response = table.query(KeyConditionExpression=("id").eq(event['pathParameters']['id']))
+        response = table.query(
+            TableName="Text-A-Task-API-dev1",
+            IndexName="id",
+            KeyConditionExpression=event['pathParameters']['id'])
+            
     except ClientError as err:
         logger.error(
             "Task %s not found in table %s. Error: Code %s, Message: %s",
