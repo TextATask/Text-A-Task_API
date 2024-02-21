@@ -10,7 +10,7 @@ def delete(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     try: 
-        response = table.delete_item(
+        result = table.delete_item(
             Key={
                 'id': event['pathParameters']['id']
             }
@@ -25,7 +25,8 @@ def delete(event, context):
             err.response["Error"]["Message"])
     
     response = {
-        "statusCode": 200
+        "statusCode": 200,
+        "body": f"Task {event['pathParameters']['id']} has been deleted"
         }
     
     return response
