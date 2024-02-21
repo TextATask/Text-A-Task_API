@@ -8,9 +8,7 @@ dynamodb = boto3.resource('dynamodb')
 def all_incomplete(event, context):
   table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
-  result = table.query(IndexName= "incompleteTasks",
-                       ExpressionAttributeValues={},
-                       KeyConditionExpression='attribute_exists(incomplete)'),
+  result = table.scan(IndexName= "incompleteTasks"),
 
   response = {
     "statusCode": 200,
