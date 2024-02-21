@@ -9,11 +9,6 @@ dynamodb = boto3.resource('dynamodb')
 
 
 def complete(event, context):
-    data = json.loads(event['body'])
-    if 'id' not in data:
-        logging.error("Validation Failed")
-        raise Exception("Couldn't update the task item.")
-        return
 
     timestamp = int(time.time() * 1000)
 
