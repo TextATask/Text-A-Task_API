@@ -20,11 +20,11 @@ def complete(event, context):
             'id': event['pathParameters']['id']
         },
         ExpressionAttributeValues={
-          ':incomplete': None,
           ':updatedAt': timestamp,
         },
-        UpdateExpression='SET incomplete = :incomplete, '
-                         'updatedAt = :updatedAt',
+        
+        UpdateExpression='SET updatedAt = :updatedAt, '
+                         'REMOVE incomplete',
         ReturnValues='ALL_NEW',
     )
 
