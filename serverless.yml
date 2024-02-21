@@ -52,6 +52,13 @@ functions:
           path: /tasks/{id}
           method: delete
 
+  complete:
+    handler: tasks/complete.complete
+    events:
+      - httpApi:
+          path: /tasks/{id}/complete
+          method: patch
+
 
 resources:
   Resources:
