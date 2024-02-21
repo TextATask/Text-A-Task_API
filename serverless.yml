@@ -63,6 +63,9 @@ resources:
           -
             AttributeName: id
             AttributeType: S
+          -
+            AttributeName: incomplete
+            AttributeType: S
           
         KeySchema:
           -
