@@ -12,10 +12,9 @@ def get(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
     try: 
-        response = table.query(
-            TableName="Text-A-Task-API-dev1",
-            IndexName="id",
-            KeyConditionExpression=event['pathParameters']['id'])
+        result = table.get_item(
+            Key={
+                'id': event['pathParameters']['id']})
             
     except ClientError as err:
         logger.error(
@@ -27,7 +26,7 @@ def get(event, context):
     
     response = {
         "statusCode": 200,
-        "body": json.dumps(response['Item'],
+        "body": json.dumps(result['Item'],
                            cls=decimalencoder.DecimalEncoder)
         }
     
