@@ -21,7 +21,7 @@ provider:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
-          Resource: "arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.DYNAMODB_TABLE}1"
+          Resource: "arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
   create:
@@ -44,6 +44,13 @@ functions:
       - httpApi:
           path: /tasks/{id}
           method: get
+  
+  delete:
+    handler: tasks/delete.delete
+    events:
+      - httpApi:
+          path: /tasks/{id}
+          method: delete
 
 
 resources:
@@ -67,4 +74,4 @@ resources:
             AttributeName: incomplete
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}2
