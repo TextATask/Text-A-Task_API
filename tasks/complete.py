@@ -23,8 +23,7 @@ def complete(event, context):
           ':updatedAt': timestamp,
         },
         
-        UpdateExpression='SET updatedAt = :updatedAt, '
-                         'REMOVE incomplete',
+        UpdateExpression='SET updatedAt = :updatedAt REMOVE incomplete',
         ReturnValues='ALL_NEW',
     )
 
