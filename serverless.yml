@@ -59,6 +59,13 @@ functions:
           path: /tasks/{id}/complete
           method: patch
 
+  all_incomplete:
+    handler: tasks/all_incomplete.all_incomplete
+    events:
+      - httpApi:
+          path: /tasks/incomplete
+          method: get
+
 
 resources:
   Resources:
