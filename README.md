@@ -7,14 +7,16 @@ platform: AWS
 language: Python
 -->
 
-## Use-cases
-
-- API for a Text-A-Task serverless event driven application.
-
 
 # Description of Text-A-Task MVP
 
 As a User I will receive a text in the morning asking me to send back a list of daily tasks. This text will also contain tasks that were not completed the previous day with a reminder that they are on the schedule. When I text back tasks in a list, I will receive a confirmation stating the tasks were saved. Throughout the day, I can send texts to indicate that tasks are complete. I will receive confirmation that the task has been marked as complete. Once that text is sent I will receive a confirmation. In the evening a task completion report for the day will be sent. Any tasks not completed will be rolled over into the next days tasks.
+
+
+## Use-cases
+
+- API for a Text-A-Task serverless event driven application.
+
 
 ## Structure
 
@@ -154,3 +156,8 @@ Example Result:
 [{"createdAt": "1710183077.8419538", "text": "Check for updated tasks attempt 3", "id": "973336", "updatedAt": 1710183087}, {"createdAt": "1710182639.9228485", "text": "Check for updated tasks attempt 2", "id": "644512", "updatedAt": 1710182928}, {"createdAt": "1708550605.1830018", "text": "Verify if all_incomplete function works", "id": "351684", "updatedAt": 1710182981}]
 ```
 
+## Credits
+
+API based off examples from:
+- https://github.com/serverless/examples/tree/v3/aws-python-http-api-with-dynamodb
+- https://github.com/awsdocs/aws-doc-sdk-examples
