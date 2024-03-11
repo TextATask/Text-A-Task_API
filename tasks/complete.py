@@ -2,7 +2,7 @@ import json
 import time
 import logging
 import os
-
+from decimal import Decimal
 from tasks import decimalencoder
 import boto3
 dynamodb = boto3.resource('dynamodb')
@@ -10,7 +10,8 @@ dynamodb = boto3.resource('dynamodb')
 
 def complete(event, context):
 
-    timestamp = int(time.time() * 1000)
+    current_time_float = time.time()
+    timestamp = Decimal(str(current_time_float))
 
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
