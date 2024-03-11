@@ -22,6 +22,10 @@ As a User I will receive a text in the morning asking me to send back a list of 
 
 This service has a separate directory for all the task operations. For each operation exactly one file exists e.g. `tasks/delete.py`. In each of these files there is exactly one function defined.
 
+Full Text-A-Task architecture:
+
+https://www.figma.com/file/0XWykz2q57tGUbxA3Jz8sa/TextATask--serverlessTextTaskScheduler?type=whiteboard&node-id=0-1&t=M1f9nhM76kqdkC2E-0
+
 ## Setup
 
 ```bash
