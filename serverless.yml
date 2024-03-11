@@ -66,6 +66,13 @@ functions:
           path: /tasks/incomplete
           method: get
 
+  all_updated_today:
+    handler: tasks/all_updated_today.all_updated_today
+    events:
+      - httpApi:
+          path: /tasks/updatedToday
+          method: get
+
 
 resources:
   Resources:
